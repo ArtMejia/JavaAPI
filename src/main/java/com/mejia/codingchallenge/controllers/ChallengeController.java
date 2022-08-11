@@ -1,36 +1,40 @@
 package com.mejia.codingchallenge.controllers;
 
 import org.springframework.web.bind.annotation.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @RestController
 @RequestMapping("/api")
 public class ChallengeController {
 
+    LocalDate date = LocalDate.now();
+    LocalTime time = LocalTime.now();
+
     @GetMapping("/data")
     public String testGetRoute() {
-        return "This is just a test";
+        return "This is just a test "+ date + " " + time;
     }
 
     @DeleteMapping("/data")
     public String testDeleteRoute() {
-        return "Delete here";
+        return "Delete here "+ date + " " + time;
     }
 
     @PatchMapping("/data")
     public String testUpdateRoute() {
-        return "Update Here";
+        return "Update Here " + date + " " + time;
     }
 
     @PostMapping("/data")
     public String testPostRoute() {
-        return "Post here";
+        return "Post here " + date + " " + time;
     }
 
-    @GetMapping("/data/{num}")
-    public String testRouteWithPathVar(@PathVariable int num) {
-        return "Multiplied by ten, " + num + " is " + (num * 10);
+    @GetMapping("/data/{num}/{num2}")
+    public String testRouteWithPathVar(@PathVariable int num, @PathVariable int num2) {
+        return "Multiply " + num + " by " + num2 + " equals " + (num * num2) + " " + date + " " + time;
     }
-
 
     @GetMapping("/data/")
     @ResponseBody
